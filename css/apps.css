@@ -1,0 +1,674 @@
+/* Application-specific content; system chrome lives in system.css. */
+.app-menu-bar {
+    display: flex;
+    gap: 0;
+    padding: 2px 3px;
+    border-bottom: 1px solid #808080;
+}
+
+    .app-menu-bar button {
+        border: 0;
+        background: transparent;
+        padding: 3px 8px;
+    }
+
+        .app-menu-bar button:hover {
+            color: #fff;
+            background: #000080;
+        }
+
+.app-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px;
+    border-bottom: 1px solid #808080;
+}
+
+.app-statusbar {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 3px 6px;
+    border-top: 1px solid #808080;
+    font-size: 11px;
+    color: #333;
+}
+
+.explorer-address {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px;
+}
+
+    .explorer-address input {
+        flex: 1;
+        min-width: 0;
+        padding: 3px 4px;
+    }
+
+.explorer-layout {
+    display: grid;
+    grid-template-columns: 135px minmax(0, 1fr);
+    min-height: 260px;
+}
+
+.explorer-tree {
+    padding: 8px 5px;
+    border-right: 1px solid #808080;
+    background: #c0c0c0;
+}
+
+    .explorer-tree button {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        width: 100%;
+        border: 0;
+        padding: 4px 3px;
+        text-align: left;
+        background: transparent;
+    }
+
+        .explorer-tree button:hover, .explorer-item.selected {
+            background: #000080;
+            color: #fff;
+        }
+
+.explorer-files {
+    background: #fff;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+    align-content: start;
+    gap: 8px;
+}
+
+.explorer-item {
+    min-height: 64px;
+    padding: 5px 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid transparent;
+    background: transparent;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+.file-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    object-fit: contain;
+}
+
+.explorer-tree .file-icon {
+    width: 16px;
+    height: 16px;
+    flex-basis: 16px;
+}
+
+.explorer-tree-items > button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    padding: 3px 2px;
+    text-align: left;
+}
+
+/* Shared icon alignment */
+.file-icon {
+    display: block;
+    object-fit: contain;
+}
+
+/* SVGs in the folder tree */
+.explorer-tree .file-icon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+}
+
+/* Folder and computer SVGs in the file pane */
+.explorer-item img.file-icon {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+}
+
+/* Emoji file icons in the file pane */
+.explorer-item span.file-icon {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    font-size: 25px;
+    line-height: 32px;
+    text-align: center;
+}
+
+    .explorer-item:hover {
+        border: 1px dotted #000;
+    }
+
+.notepad {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+    .notepad textarea {
+        flex: 1;
+        min-height: 180px;
+        width: 100%;
+        padding: 6px;
+        resize: none;
+        border: 0;
+        outline: 0;
+        font: 13px "Courier New", monospace;
+        user-select: text;
+    }
+
+.terminal {
+    height: 100%;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    background: #000;
+    color: #ddd;
+    font: 13px "Courier New", monospace;
+    user-select: text;
+}
+
+.terminal-output {
+    flex: 1;
+    overflow: auto;
+    white-space: pre-wrap;
+}
+
+.terminal-form {
+    display: flex;
+    gap: 6px;
+}
+
+    .terminal-form label {
+        white-space: nowrap;
+    }
+
+    .terminal-form input {
+        flex: 1;
+        min-width: 0;
+        color: #ddd;
+        background: #000;
+        border: 0;
+        outline: 0;
+        font: inherit;
+    }
+
+.aim-app {
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+}
+
+.aim-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px;
+    border-bottom: 1px solid #808080;
+}
+
+.aim-logo {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 40px;
+    background: #ffcc00;
+    border: 2px solid #000;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.aim-user {
+    line-height: 1.5;
+}
+
+.aim-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px;
+}
+
+    .aim-controls select {
+        flex: 1;
+        min-width: 0;
+    }
+
+.buddy-list {
+    min-height: 180px;
+    max-height: 260px;
+    overflow: auto;
+    margin: 0 8px;
+    padding: 5px;
+    user-select: none;
+}
+
+.buddy-group {
+    margin-bottom: 5px;
+}
+
+.buddy-group-heading {
+    display: block;
+    width: 100%;
+    padding: 3px;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    font-weight: bold;
+}
+
+.buddy-row {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+    align-items: center;
+    border: 0;
+    background: transparent;
+    text-align: left;
+    padding: 3px 5px 3px 17px;
+}
+
+    .buddy-row:hover {
+        background: #e5e5e5;
+    }
+
+    .buddy-row.selected {
+        color: #fff;
+        background: #000080;
+    }
+
+.buddy-presence {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex: 0 0 9px;
+    border: 1px solid #555;
+}
+
+    .buddy-presence.online {
+        background: #ffd700;
+    }
+
+    .buddy-presence.away {
+        background: #e33;
+    }
+
+    .buddy-presence.offline {
+        background: #eee;
+    }
+
+.aim-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    padding: 8px;
+}
+
+.chat-app {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+}
+
+.chat-meta {
+    padding: 5px 7px;
+    border-bottom: 1px solid #808080;
+}
+
+.chat-log {
+    flex: 1;
+    min-height: 150px;
+    max-height: 260px;
+    padding: 8px;
+    overflow: auto;
+    background: #fff;
+    user-select: text;
+}
+
+.chat-line {
+    margin-bottom: 5px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+    .chat-line strong {
+        color: #000080;
+    }
+
+.chat-compose {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+    .chat-compose textarea {
+        width: 100%;
+        height: 55px;
+        resize: vertical;
+        padding: 4px;
+        user-select: text;
+    }
+
+    .chat-compose .chat-compose-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 5px;
+    }
+
+@media (max-width: 420px) {
+    .explorer-layout {
+        grid-template-columns: 95px minmax(0, 1fr);
+    }
+
+    .aim-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* Dial-Up Networking — Windows 98-style wizard and progress dialog */
+
+.dialup-wizard,
+.dialup-progress {
+    box-sizing: border-box;
+    height: 100%;
+    color: #000;
+    background: #c0c0c0;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 11px;
+}
+
+.dialup-wizard {
+    display: flex;
+}
+
+.dialup-wizard-sidebar {
+    box-sizing: border-box;
+    width: 116px;
+    flex: 0 0 116px;
+    padding: 22px 12px;
+    color: #fff;
+    background: linear-gradient(160deg, #000080, #1084d0);
+}
+
+.dialup-logo {
+    display: grid;
+    place-items: center;
+    width: 66px;
+    height: 66px;
+    margin: 0 auto 14px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font-size: 42px;
+    color: #fff;
+}
+
+.dialup-logo-caption {
+    text-align: center;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.dialup-wizard-main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    padding: 22px 18px 10px;
+}
+
+    .dialup-wizard-main h2 {
+        margin: 0 0 18px;
+        font-size: 15px;
+        line-height: 1.4;
+    }
+
+    .dialup-wizard-main p {
+        margin: 0 0 12px;
+        line-height: 1.5;
+    }
+
+.dialup-flex-spacer {
+    flex: 1;
+}
+
+.dialup-button-row,
+.dialup-progress-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 7px;
+    padding-top: 9px;
+    border-top: 1px solid #808080;
+}
+
+.dialup-button {
+    min-width: 74px;
+    height: 23px;
+    padding: 2px 10px;
+    color: #000;
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #fff #404040 #404040 #fff;
+    border-radius: 0;
+    font: 11px Tahoma, Arial, sans-serif;
+    box-shadow: 1px 1px 0 #000;
+    cursor: default;
+}
+
+    .dialup-button:active {
+        border-color: #404040 #fff #fff #404040;
+        box-shadow: none;
+        padding: 3px 9px 1px 11px;
+    }
+
+    .dialup-button:focus-visible {
+        outline: 1px dotted #000;
+        outline-offset: -4px;
+    }
+
+.dialup-progress {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+}
+
+.dialup-connection {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.dialup-modem-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #808080;
+    background: #e0e0e0;
+    font-size: 28px;
+}
+
+.dialup-connection-title {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.dialup-connection-name {
+    color: #404040;
+}
+
+.dialup-fields {
+    display: grid;
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: 7px 6px;
+    align-items: center;
+}
+
+.dialup-label {
+    white-space: nowrap;
+}
+
+.dialup-progress-track {
+    box-sizing: border-box;
+    height: 13px;
+    margin: 13px 0 8px;
+    padding: 2px;
+    overflow: hidden;
+    border: 1px solid;
+    border-color: #404040 #fff #fff #404040;
+    background: #fff;
+}
+
+.dialup-progress-fill {
+    height: 100%;
+    width: 0;
+    background: repeating-linear-gradient( 90deg, #000080 0, #000080 10px, #fff 10px, #fff 12px );
+    transition: width 250ms linear;
+}
+
+    .dialup-progress-fill.complete {
+        background: #000080;
+    }
+
+.dialup-success {
+    margin-top: 6px;
+    color: #006000;
+}
+
+.dialup-progress-footer {
+    margin-top: auto;
+}
+
+
+/* Internet Explorer browser chrome */
+
+.ie-app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: #c0c0c0;
+    color: #000;
+    font: 11px Tahoma, Arial, sans-serif;
+}
+
+.ie-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3px;
+    padding: 5px;
+    border-bottom: 1px solid #808080;
+    background: #c0c0c0;
+}
+
+.ie-toolbar-button,
+.ie-go-button {
+    box-sizing: border-box;
+    min-width: 46px;
+    height: 28px;
+    padding: 3px 7px;
+    color: #000;
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #fff #404040 #404040 #fff;
+    border-radius: 0;
+    font: 11px Tahoma, Arial, sans-serif;
+    cursor: default;
+}
+
+    .ie-toolbar-button:active,
+    .ie-go-button:active {
+        border-color: #404040 #fff #fff #404040;
+    }
+
+    .ie-toolbar-button:disabled {
+        color: #808080;
+    }
+
+.ie-address-row {
+    display: flex;
+    flex: 1 1 100%;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    margin: 3px 0 0;
+}
+
+.ie-address-label {
+    flex: 0 0 auto;
+}
+
+.ie-address {
+    box-sizing: border-box;
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    height: 23px;
+    padding: 2px 5px;
+    border: 1px solid;
+    border-color: #404040 #fff #fff #404040;
+    border-radius: 0;
+    background: #fff;
+    color: #000;
+    font: 12px Arial, sans-serif;
+}
+
+.ie-go-button {
+    min-width: 38px;
+    height: 23px;
+}
+
+.ie-viewport {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #fff;
+}
+
+.ie-page {
+    display: block;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    border: 0;
+    background: #fff;
+}
+
+.ie-status {
+    box-sizing: border-box;
+    flex: 0 0 20px;
+    height: 20px;
+    padding: 3px 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 1px solid #fff;
+    background: #c0c0c0;
+    color: #000;
+}

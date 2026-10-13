@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#008080">
+    <title>Angelina's Desktop</title>
+    <link rel="stylesheet" href="css/system.css">
+    <link rel="stylesheet" href="css/apps.css">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/my-computer.svg">
+</head>
+<body>
+    <main id="desktop" class="desktop" aria-label="Windows 98 desktop">
+        <div id="desktop-icons" class="desktop-icons" aria-label="Desktop shortcuts"></div>
+        <div id="window-layer" class="window-layer"></div>
+        <div id="start-menu" class="start-menu" hidden></div>
+        <div id="desktop-context-menu" class="context-menu" hidden>
+            <button data-action="refresh">Refresh</button>
+            <div class="menu-separator"></div>
+            <button data-action="open-about">About this computer</button>
+            <button data-action="settings">Properties</button>
+        </div>
+        <footer id="taskbar" class="taskbar">
+            <button id="start-button" class="start-button" aria-expanded="false">
+                <span class="start-logo" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+                <strong>Start</strong>
+            </button>
+            <div class="taskbar-divider"></div>
+            <div id="taskbar-windows" class="taskbar-windows" aria-label="Open applications"></div>
+            <div class="system-tray">
+                <button id="sound-toggle" class="tray-icon" title="Toggle sounds" aria-label="Toggle sounds">♫</button>
+                <span class="tray-clock" id="tray-clock">12:00 AM</span>
+            </div>
+        </footer>
+    </main>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
