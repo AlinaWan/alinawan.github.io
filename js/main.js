@@ -25,5 +25,5 @@ const desktop = createDesktop({
 
 registerCoreApps(desktop);
 desktop.mount();
-desktop.openApp("explorer", { path: "C:\\Projects" });
+desktop.openApp("projects");
 desktop.openApp("notepad", { filePath: "C:\\Documents\\About Me.txt" });

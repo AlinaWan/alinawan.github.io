@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+    <TITLE>Livia - Angelina's Projects</TITLE>
+    <LINK REL="stylesheet" HREF="style.css" TYPE="text/css">
+    <META NAME="description" CONTENT="Livia is an open-source C# automation framework for Roblox macros and Windows applications, developed by Angelina.">
+    <META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+</HEAD>
+<BODY>
+
+    <CENTER>
+        <H1>Livia</H1>
+        <P><B>A New Frontier in Macro Development</B></P>
+
+        <P>
+            <A HREF="https://github.com/AlinaWan/Livia">GitHub Repository</A> |
+            <A HREF="https://www.nuget.org/packages/Livia">NuGet Package</A> |
+            <A HREF="https://pypi.org/project/livia-python/">Python Bindings</A>
+        </P>
+
+        <HR WIDTH="80%">
+
+        <P>
+            An open-source C# automation framework and engine
+            that brings reusable, extensible software architecture
+            to Roblox macros and Windows applications.
+        </P>
+
+        <P>
+            <SMALL>
+                <I>"Magnus ab integro saeclorum nascitur ordo"</I>
+                <BR>
+                — Virgil, Eclogue IV (c. 40 BCE)
+            </SMALL>
+        </P>
+
+        <HR WIDTH="80%">
+    </CENTER>
+
+    <H2>About Livia</H2>
+
+    <P>
+        Livia is a Windows automation library designed to move macro
+        development beyond isolated, one-off scripts. Instead of
+        reimplementing common functionality for every project, developers
+        can build on a shared foundation of reusable services, UI
+        components, input simulation, and system utilities.
+    </P>
+
+    <P>
+        Although Roblox automation is its primary use case, Livia's
+        general-purpose functionality can also be used independently
+        to build Windows applications.
+    </P>
+
+    <H2>Technical Highlights</H2>
+
+    <UL>
+        <LI>
+            <B>DXGI Frame Capture</B> &mdash;
+            Native C++ screen capture using DirectX Graphics Infrastructure
+            and GPU staging resources.
+        </LI>
+        <LI>
+            <B>Windows Security Integration</B> &mdash;
+            VSS-backed DPAPI cookie decryption for accessing browser-stored
+            authentication data.
+        </LI>
+        <LI>
+            <B>Native Windows APIs</B> &mdash;
+            Low-level system integration through Win32, Windows Runtime,
+            and native interop.
+        </LI>
+        <LI>
+            <B>Reusable UI Components</B> &mdash;
+            Common WPF controls for building consistent Windows application
+            interfaces.
+        </LI>
+        <LI>
+            <B>Multi-Instance Support</B> &mdash;
+            Roblox singleton mutex handling and multi-account launching.
+        </LI>
+        <LI>
+            <B>Asynchronous Services</B> &mdash;
+            Log monitoring, window focus monitoring, waitable timers,
+            Discord webhooks, and other reusable utilities.
+        </LI>
+    </UL>
+
+    <H2>Getting Started</H2>
+
+    <P>
+        Livia targets .NET 10 on Windows 11 (build 22000 or later).
+        It can be installed into an existing C# project through NuGet.
+    </P>
+
+    <PRE>dotnet add package Livia</PRE>
+
+    <P>
+        Python applications can use the official Python bindings,
+        which expose Livia's functionality through Python.NET.
+    </P>
+
+    <PRE>pip install livia-python</PRE>
+
+    <P>
+        <A HREF="https://github.com/AlinaWan/Livia">
+            Visit the repository for installation instructions and source code.
+        </A>
+    </P>
+
+    <H2>API Overview</H2>
+
+    <P>
+        Livia exposes a collection of reusable APIs for common automation
+        tasks. The following are examples of the functionality available
+        to consuming applications.
+    </P>
+
+    <H3>User Interface</H3>
+
+    <UL>
+        <LI><CODE>CommonTab</CODE> &mdash; Creates reusable UI tabs.</LI>
+        <LI><CODE>CommonIntegerInput</CODE> &mdash; Integer input controls.</LI>
+        <LI><CODE>CommonStringInput</CODE> &mdash; String input controls.</LI>
+        <LI><CODE>CommonActionInput</CODE> &mdash; Combined action buttons and input fields.</LI>
+        <LI><CODE>CommonToggle</CODE> &mdash; Toggle controls for application settings.</LI>
+    </UL>
+
+    <H3>Input Simulation</H3>
+
+    <UL>
+        <LI><CODE>HotkeyService</CODE> &mdash; Registers hotkeys with optional modifiers.</LI>
+        <LI><CODE>Mouse</CODE> &mdash; Mouse movement, clicking, and scrolling.</LI>
+        <LI><CODE>Keyboard</CODE> &mdash; Keyboard press and release simulation.</LI>
+        <LI><CODE>VirtualKeys</CODE> and <CODE>ModifierKeys</CODE> &mdash; Named virtual key codes and modifier flags.</LI>
+    </UL>
+
+    <H3>Windows Services</H3>
+
+    <UL>
+        <LI><CODE>DxgiFrameProvider</CODE> &mdash; Captures screen regions through DXGI.</LI>
+        <LI><CODE>WindowFocusMonitor</CODE> &mdash; Detects target window focus changes.</LI>
+        <LI><CODE>RobloxLogMonitor</CODE> &mdash; Monitors log files using regular expressions.</LI>
+        <LI><CODE>WaitableTimerService</CODE> &mdash; Schedules asynchronous callbacks.</LI>
+        <LI><CODE>WindowsOcrService</CODE> &mdash; Uses the native Windows OCR engine.</LI>
+        <LI><CODE>DiscordWebhookService</CODE> &mdash; Sends messages through Discord webhooks.</LI>
+    </UL>
+
+    <H3>Roblox Utilities</H3>
+
+    <UL>
+        <LI><CODE>RobloxServerUtils</CODE> &mdash; Retrieves private server information and join links.</LI>
+        <LI><CODE>RobloxPlayerUtils</CODE> &mdash; Launches multiple accounts into an experience.</LI>
+        <LI><CODE>RobloxSingletonMutexClosingService</CODE> &mdash; Handles Roblox singleton synchronization objects.</LI>
+        <LI><CODE>BrowserUtils</CODE> &mdash; Provides browser cookie access utilities.</LI>
+    </UL>
+
+    <P>
+        This is a selection of the available APIs, not an exhaustive
+        reference. See the repository for the complete implementation
+        and usage examples.
+    </P>
+
+    <P>
+        <A HREF="https://github.com/AlinaWan/Livia/blob/main/GUIDES.md">
+            Read the Livia Guides
+        </A> |
+        <A HREF="https://github.com/AlinaWan/Livia/blob/main/TROUBLESHOOTING.md">
+            Troubleshooting
+        </A>
+    </P>
+
+    <H2>Reference Macros</H2>
+
+    <P>
+        The Livia repository also contains reference macro applications
+        demonstrating how the library can be used in practice.
+        These projects are separate from the core library and serve
+        primarily as examples of implementation.
+    </P>
+
+    <UL>
+        <LI>Auto Order &mdash; My Cafe</LI>
+        <LI>Auto Rejoin &mdash; General-purpose Roblox automation</LI>
+        <LI>Singleton Mutex Closer &mdash; Roblox instance management</LI>
+    </UL>
+
+    <P>
+        Reference macros are maintained on a volunteer basis and are
+        not guaranteed to remain functional following updates to Roblox
+        or their respective games.
+    </P>
+
+    <H2>Project Information</H2>
+
+    <UL>
+        <LI><B>Language:</B> C# and C++</LI>
+        <LI><B>Framework:</B> .NET 10</LI>
+        <LI><B>Platform:</B> Windows 11 and later</LI>
+        <LI><B>License:</B> MIT</LI>
+        <LI><B>Author:</B> Angelina</LI>
+    </UL>
+
+    <P>
+        Livia is open-source software. Contributions, bug reports,
+        and suggestions are welcome through the GitHub repository.
+    </P>
+
+    <CENTER>
+        <HR WIDTH="80%">
+
+        <P>
+            <A HREF="http://alinawan.com/">Home</A> |
+            <A HREF="http://alinawan.com/projects.html">My Projects</A> |
+            <A HREF="https://github.com/AlinaWan/Livia">GitHub</A>
+        </P>
+
+        <P><SMALL>Copyright &copy; 2026 Angelina</SMALL></P>
+    </CENTER>
+
+</BODY>
+</HTML>
