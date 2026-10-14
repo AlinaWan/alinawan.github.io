@@ -26,6 +26,7 @@ html, body {
     height: 100%;
     margin: 0;
     overflow: hidden;
+    background: #000;
 }
 
 body {
@@ -52,9 +53,13 @@ button {
 }
 
 .desktop {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    width: 1024px;
+    height: 768px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(var(--desktop-scale, 1));
+    transform-origin: center center;
     overflow: hidden;
     background: var(--desktop);
     isolation: isolate;
@@ -534,3 +539,18 @@ textarea,
 .window-resize {
     cursor: url("../assets/cursors/resize-nwse.cur") 16 16, nwse-resize;
 }
+
+.desktop {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+    .desktop::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 9999;
+        pointer-events: none;
+        background: repeating-linear-gradient( to bottom, transparent 0px, transparent 3px, rgba(0, 0, 0, 0.035) 3px, rgba(0, 0, 0, 0.035) 4px );
+        opacity: 0.45;
+    }

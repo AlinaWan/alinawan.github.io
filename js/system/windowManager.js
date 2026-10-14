@@ -103,8 +103,16 @@ export function createWindowManager({ layer, taskbar }) {
             const win = windows.get(id);
             if (!win || win.maximized) return;
             focusWindow(id);
-            const rect = element.getBoundingClientRect();
-            drag = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, left: rect.left, top: rect.top };
+            const scale = layer.getBoundingClientRect().width / layer.clientWidth || 1;
+
+            drag = {
+                pointerId: event.pointerId,
+                x: event.clientX,
+                y: event.clientY,
+                left: element.offsetLeft,
+                top: element.offsetTop,
+                scale
+            };
             handle.setPointerCapture(event.pointerId);
             event.preventDefault();
         });
@@ -112,8 +120,8 @@ export function createWindowManager({ layer, taskbar }) {
             if (!drag || event.pointerId !== drag.pointerId) return;
             const maxLeft = Math.max(0, layer.clientWidth - 90);
             const maxTop = Math.max(0, layer.clientHeight - 34);
-            const left = clamp(drag.left + event.clientX - drag.x, 0, maxLeft);
-            const top = clamp(drag.top + event.clientY - drag.y, 0, maxTop);
+            const left = clamp(drag.left + (event.clientX - drag.x) / drag.scale, 0, maxLeft);
+            const top = clamp(drag.top + (event.clientY - drag.y) / drag.scale, 0, maxTop);
             element.style.left = `${left}px`;
             element.style.top = `${top}px`;
         });
@@ -132,8 +140,16 @@ export function createWindowManager({ layer, taskbar }) {
             const win = windows.get(id);
             if (!win || win.maximized) return;
             focusWindow(id);
-            const rect = element.getBoundingClientRect();
-            resize = { pointerId: event.pointerId, x: event.clientX, y: event.clientY, width: rect.width, height: rect.height };
+            const scale = layer.getBoundingClientRect().width / layer.clientWidth || 1;
+
+            resize = {
+                pointerId: event.pointerId,
+                x: event.clientX,
+                y: event.clientY,
+                width: element.offsetWidth,
+                height: element.offsetHeight,
+                scale
+            };
             grip.setPointerCapture(event.pointerId);
             event.preventDefault();
             event.stopPropagation();
@@ -141,8 +157,16 @@ export function createWindowManager({ layer, taskbar }) {
         grip.addEventListener("pointermove", event => {
             if (!resize || event.pointerId !== resize.pointerId) return;
             const win = windows.get(id);
-            const width = clamp(resize.width + event.clientX - resize.x, win.minWidth, layer.clientWidth);
-            const height = clamp(resize.height + event.clientY - resize.y, win.minHeight, layer.clientHeight);
+            const width = clamp(
+                resize.width + (event.clientX - resize.x) / resize.scale,
+                win.minWidth,
+                layer.clientWidth
+            );
+            const height = clamp(
+                resize.height + (event.clientY - resize.y) / resize.scale,
+                win.minHeight,
+                layer.clientHeight
+            );
             element.style.width = `${width}px`;
             element.style.height = `${height}px`;
         });
