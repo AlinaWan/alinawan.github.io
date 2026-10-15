@@ -1,4 +1,5 @@
 import { virtualFileSystem as fs } from "../system/filesystem.js";
+import { runPython } from "../system/pythonRuntime.js";
 
 export function createTerminalApp() {
     return {
@@ -17,23 +18,109 @@ export function createTerminalApp() {
                 const verb = (verbRaw || "").toLowerCase();
                 const arg = rest.join(" ");
                 if (!verb) return;
-                if (verb === "help") print("HELP  DIR  CD  CLS  TYPE  VER  PROJECTS  ABOUT  EXIT");
+                if (verb === "help") {
+                    print("HELP  DIR  CD  CLS  TYPE  VER  PROJECTS  ABOUT  PYTHON  EXIT");
+                }
                 else if (verb === "ver") print("Microsoft Windows 98 [Portfolio Edition]");
                 else if (verb === "cls") output.textContent = "";
                 else if (verb === "dir") {
                     const entries = fs.list(cwd);
                     print(entries ? entries.map(e => `${e.type === "directory" ? "<DIR>      " : "           "}${e.name}`).join("\n") : "File not found.");
+
                 } else if (verb === "cd") {
-                    const next = arg ? fs.normalize(cwd.endsWith("\\") ? cwd + arg : cwd + "\\" + arg) : "C:\\";
-                    if (fs.get(next)?.type === "directory") cwd = next;
-                    else print("The system cannot find the path specified.");
-                } else if (verb === "type") {
+                    const next = !arg
+                        ? "C:\\"
+                        : fs.normalize(
+                            /^[A-Za-z]:[\\/]/.test(arg)
+                                ? arg
+                                : `${cwd.endsWith("\\") ? cwd : cwd + "\\"}${arg}`
+                        );
+
+                    if (fs.get(next)?.type === "directory") {
+                        cwd = next;
+                    } else {
+                        print("The system cannot find the path specified.");
+                    }
+                }
+                else if (verb === "type") {
                     const path = fs.normalize(cwd.endsWith("\\") ? cwd + arg : cwd + "\\" + arg);
                     const file = fs.get(path);
                     print(file?.type === "file" ? file.content : "The system cannot find the file specified.");
                 } else if (verb === "projects") desktop.openApp("projects");
                 else if (verb === "about") desktop.openApp("about");
                 else if (verb === "exit") win.close();
+
+
+                else if (verb === "python") {
+                    if (!arg) {
+                        print('Usage: PYTHON <file.py> [arguments] | PYTHON -c "code"');
+                        return;
+                    }
+
+                    let source;
+                    let filename = "<string>";
+                    let parsedArgs = [];
+
+                    if (arg === "-c" || arg.startsWith("-c ")) {
+                        let code = arg.slice(2).trim();
+
+                        if (!code) {
+                            print('Usage: PYTHON -c "code"');
+                            return;
+                        }
+
+                        const quote = code[0];
+
+                        if (
+                            (quote === '"' || quote === "'") &&
+                            code.at(-1) === quote
+                        ) {
+                            code = code.slice(1, -1);
+                        }
+
+                        source = code;
+                    } else {
+                        const match = arg.match(
+                            /^(?:"([^"]+)"|'([^']+)'|(\S+))(?:\s+(.*))?$/
+                        );
+
+                        if (!match) {
+                            print('Usage: PYTHON <file.py> [arguments]');
+                            return;
+                        }
+
+                        filename = match[1] || match[2] || match[3];
+                        const scriptArgs = match[4] || "";
+
+                        const path = fs.normalize(
+                            /^[A-Za-z]:[\\/]/.test(filename)
+                                ? filename
+                                : `${cwd.endsWith("\\") ? cwd : cwd + "\\"}${filename}`
+                        );
+
+                        const file = fs.get(path);
+
+                        if (file?.type !== "file" || !/\.py$/i.test(path)) {
+                            print("The system cannot find the Python script specified.");
+                            return;
+                        }
+
+                        source = file.content;
+
+                        const args = scriptArgs.match(/"[^"]*"|'[^']*'|\S+/g) ?? [];
+                        parsedArgs = args.map(a => a.replace(/^["']|["']$/g, ""));
+                    }
+
+                    runPython(
+                        source,
+                        text => print(text),
+                        filename,
+                        parsedArgs
+                    ).catch(error => {
+                        print(`Python runtime error: ${error}`);
+                    });
+                }
+
                 else print(`Bad command or file name: ${verbRaw}`);
             }
             root.querySelector("form").addEventListener("submit", event => {

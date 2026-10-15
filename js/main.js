@@ -1,5 +1,8 @@
 import { createDesktop } from "./system/desktop.js";
 import { registerCoreApps } from "./apps/register.js";
+import { filesystemReady } from "./system/filesystem.js";
+
+await filesystemReady;
 
 const desktopElement = document.querySelector("#desktop");
 
